@@ -1,0 +1,19 @@
+# Arquivos de build
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+
+# Diretórios de build comuns
+/build/
+/bin/
+/dist/
+
+# Arquivos temporários e de sistema
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
