@@ -10,13 +10,6 @@ struct Aluno {
     int media_final;
 
     // Funções da struct
-    void insertContent(string strnome, string strcurso, int strraescolar, int strmedia_final){
-        nome = strnome;
-        curso = strcurso;
-        raescolar = strraescolar;
-        media_final = strmedia_final;
-    }
-
     void viewContent() {
         cout << "|--------------------|" << endl;
         cout << "|Nome................: " << nome << endl;
@@ -95,7 +88,7 @@ int main()
 
         case 2:
         if(totalCadastrados == 0) {
-            cout << "Nenhum aluno cadastrado ainda.\n";
+            cout << "Nenhum aluno cadastrado.\n";
             break;
         } else {
             for(int i=0; i < totalCadastrados; i++){
@@ -161,15 +154,18 @@ int main()
     return 0;
 }
 
+// Verificar se o máximo de alunos já não foi atingido
 bool limitExceded(int capacidade, int totalCadastrados){
     if(totalCadastrados == capacidade) return true;
     return false;
 }
 
+// Alterar a média final de um aluno
 void updateMedia(int newMedia, int &media_final){
     media_final = newMedia;
 }
 
+// Procurar e retornar o index do aluno
 int findIndexRA(Aluno *alunos, int raescolar, int totalCadastrados) {
     for(int i=0; i < totalCadastrados; i++){
         if(raescolar == alunos[i].raescolar) {
@@ -179,6 +175,7 @@ int findIndexRA(Aluno *alunos, int raescolar, int totalCadastrados) {
     return -1;
 }
 
+// Deletar um determinado aluno pela busca do seu RA(buscado pelo index do aluno)
 bool deletedByRA(Aluno *alunos, int raescolar, int &totalCadastrados){
     int index = findIndexRA(alunos, raescolar, totalCadastrados);
     if(index == -1){
