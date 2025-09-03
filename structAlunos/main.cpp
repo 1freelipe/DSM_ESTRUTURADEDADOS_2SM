@@ -7,7 +7,7 @@ struct Aluno {
     string nome;
     string curso;
     int raescolar;
-    int media_final;
+    float media_final;
 
     // Funções da struct
     void viewContent() {
@@ -31,7 +31,7 @@ struct Aluno {
 
 // Funções globais
 bool limitExceded(int capacidade, int totalCadastrados);
-void updateMedia(int newMedia, int &media_final);
+void updateMedia(float newMedia, float &media_final);
 int findIndexRA(Aluno *alunos, int raescolar, int totalCadastrados);
 bool deletedByRA(Aluno *alunos, int raescolar, int &totalCadastrados);
 
@@ -40,7 +40,8 @@ int main()
     setlocale(LC_ALL, "portuguese");
 
     // Variáveis globais
-    int opc, totalCadastrados = 0, capacidade = 50, raBuscado = 0, newMedia = 0;
+    int opc, totalCadastrados = 0, capacidade = 50, raBuscado = 0;
+    float newMedia = 0;
     bool findStudent = false;
 
     Aluno *alunos = new Aluno[capacidade];
@@ -161,7 +162,7 @@ bool limitExceded(int capacidade, int totalCadastrados){
 }
 
 // Alterar a média final de um aluno
-void updateMedia(int newMedia, int &media_final){
+void updateMedia(float newMedia, float &media_final){
     media_final = newMedia;
 }
 
