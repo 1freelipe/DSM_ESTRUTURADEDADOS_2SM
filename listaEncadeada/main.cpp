@@ -12,9 +12,11 @@ struct Aluno {
 
 struct ListaEncadeada {
     Aluno* primeiro; // Criando um primeiro espaço na lista
+    int tamanho;
 
     ListaEncadeada() {
         primeiro = nullptr; // Primeiro apontando para null, indicando que a lista está vazia
+        tamanho = 0;
     }
 
     bool verifyList() {
@@ -51,6 +53,7 @@ struct ListaEncadeada {
             novo->prox = primeiro; // O primeiro insert agora ponta para o primeiro que antes estava null
             primeiro = novo; // E o primeiro já aponta para o próximo insert, criando um link
             cout << "Aluno cadastrado com sucesso." << endl;
+            tamanho++;
         }
     }
 
@@ -101,6 +104,7 @@ struct ListaEncadeada {
                }
                delete atual;
                cout << "Cadastro excluído com sucesso" << endl;
+               tamanho--;
 
             return;
         }
@@ -111,6 +115,48 @@ struct ListaEncadeada {
     if(!findStudent) {
         cout << "Aluno com a matrícula " << matricula << " não encontrado!" << endl;
     }
+}
+
+void bubbleSort() {
+    Aluno* atual;
+    Aluno* proximo;
+    Aluno* anterior;
+    bool control;
+
+    if (primeiro == nullptr || primeiro->prox == nullptr) {
+        return; // Lista vazia ou com um único nó, já está ordenada
+    }
+
+    do {
+        control = false;
+        anterior = nullptr;
+        atual = primeiro;
+
+        while (atual != nullptr && atual->prox != nullptr) {
+            proximo = atual->prox;
+
+            if (atual->matricula > proximo->matricula) {
+                // Lógica de troca
+                if (anterior == nullptr) {
+                    primeiro = proximo; // A troca envolve o primeiro nó da lista
+                } else {
+                    anterior->prox = proximo; // A troca ocorre no meio da lista
+                }
+
+                atual->prox = proximo->prox;
+
+                proximo->prox = atual;
+
+                anterior = proximo;
+                atual = proximo->prox;
+
+                control = true;
+            } else {
+                anterior = atual;
+                atual = atual->prox;
+            }
+        }
+    } while (control);
 }
 
 };
@@ -143,6 +189,7 @@ int main()
             break;
         }
         cout << "Lista de todos os alunos" << endl;
+        lista.bubbleSort();
         lista.printList();
         break;
 
@@ -172,3 +219,4 @@ int main()
 
     return 0;
 }
+
