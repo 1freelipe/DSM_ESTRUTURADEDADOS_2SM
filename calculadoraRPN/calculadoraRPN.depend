@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1759277545 source:c:\estruturadedados\calculadorarpn\main.cpp
+	<iostream>
+	<limits>
+	<sstream>
+	<locale>
+
